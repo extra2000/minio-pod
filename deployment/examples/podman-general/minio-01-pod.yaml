@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: minio-01-pod
+  name: minio-01-pod
+  annotations:
+    seccomp.security.alpha.kubernetes.io/pod: localhost/default.json
+spec:
+  restartPolicy: OnFailure
+  hostNetwork: false
+  containers:
+  - name: minio-01
+    image: localhost/extra2000/minio
+    command: ['minio']
+    args: ['server', '/data', '--console-address', ':9001']
+    securityContext:
+      allowPrivilegeEscalation: false
+      privileged: false
+      capabilities:
+        add: []
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      seLinuxOptions:
+        type: minio_01_pod_minio_01.process
+    resources:
+      requests:
+        memory: 1000Mi
+        cpu: 1000m
+      limits:
+        memory: 1000Mi
+        cpu: 1000m
+    ports:
+    - containerPort: 9000
+      hostPort: 9000
+      hostIP: 0.0.0.0
+      protocol: tcp
+    - containerPort: 9001
+      hostPort: 9001
+      hostIP: 0.0.0.0
+      protocol: tcp
+    env:
+    - name: MINIO_ROOT_USER
+      valueFrom:
+        configMapKeyRef:
+          name: minio-01-configmap
+          key: minio_root_user
+    - name: MINIO_ROOT_PASSWORD
+      valueFrom:
+        configMapKeyRef:
+          name: minio-01-configmap
+          key: minio_root_password
+    - name: MINIO_BROWSER
+      valueFrom:
+        configMapKeyRef:
+          name: minio-01-configmap
+          key: minio_browser
+    # - name: MINIO_DOMAIN
+    #   valueFrom:
+    #     configMapKeyRef:
+    #       name: minio-01-configmap
+    #       key: minio_domain
+    volumeMounts:
+    - mountPath: /data
+      name: minio-01-data
+  volumes:
+  - name: minio-01-data
+    persistentVolumeClaim:
+      claimName: minio-01-data
