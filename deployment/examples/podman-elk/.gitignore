@@ -2,3 +2,5 @@ secrets/*
 !secrets/.gitkeep
 configmaps/*
 !configmaps/*.example
+
+elk-minio-01-pod.yaml
