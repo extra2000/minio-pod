@@ -12,11 +12,17 @@ Clone this repository:
 
     git clone https://github.com/extra2000/minio-pod.git
 
-``cd`` into ``minio-pod/deployment/examples/``:
+``cd`` into project's root directory:
 
 .. code-block:: bash
 
-    cd minio-pod/deployment/examples/
+    cd minio-pod
+
+From the project's root directory, ``cd`` into ``deployment/examples/``:
+
+.. code-block:: bash
+
+    cd deployment/examples/
 
 Build our MinIO image:
 
@@ -27,11 +33,11 @@ Build our MinIO image:
 Prerequisites for ``minio-01``
 ------------------------------
 
-``cd`` into ``minio-pod/deployment/examples/podman-general``:
+From the project's root directory, ``cd`` into ``deployment/examples/podman-general``:
 
 .. code-block:: bash
 
-    cd minio-pod/deployment/examples/podman-general
+    cd deployment/examples/podman-general
 
 Create config file:
 

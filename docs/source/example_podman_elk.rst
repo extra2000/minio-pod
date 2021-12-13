@@ -12,11 +12,17 @@ Clone this repository:
 
     git clone https://github.com/extra2000/minio-pod.git
 
-``cd`` into ``minio-pod/deployment/examples/``:
+``cd`` into project's root directory:
 
 .. code-block:: bash
 
-    cd minio-pod/deployment/examples/
+    cd minio-pod
+
+From the project's root directory, ``cd`` into ``deployment/examples/``:
+
+.. code-block:: bash
+
+    cd deployment/examples/
 
 Build our MinIO image:
 
@@ -31,11 +37,11 @@ Create ``elknet`` podman network from `extra2000/elastic-elasticsearch-pod`_ pro
 Prerequisites for ``minio-01``
 ------------------------------
 
-``cd`` into ``minio-pod/deployment/examples/podman-elk``:
+From the project's root directory, ``cd`` into ``deployment/examples/podman-elk``:
 
 .. code-block:: bash
 
-    cd minio-pod/deployment/examples/podman-elk
+    cd deployment/examples/podman-elk
 
 Create config file:
 
