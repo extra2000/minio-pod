@@ -1,1 +1,1 @@
-FROM quay.io/minio/minio:RELEASE.2021-08-31T05-46-54Z.fips
+FROM quay.io/minio/minio:RELEASE.2021-12-10T23-03-39Z.fips
