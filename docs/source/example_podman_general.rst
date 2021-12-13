@@ -28,7 +28,7 @@ Build our MinIO image:
 
 .. code-block:: bash
 
-    sudo podman build -t extra2000/minio .
+    podman build -t extra2000/minio .
 
 Prerequisites for ``minio-01``
 ------------------------------
@@ -66,7 +66,7 @@ Deploy ``minio-01``
 
 .. code-block:: bash
 
-    sudo podman play kube --configmap configmaps/minio-01.yaml --seccomp-profile-root ./seccomp minio-01-pod.yaml
+    podman play kube --configmap configmaps/minio-01.yaml --seccomp-profile-root ./seccomp minio-01-pod.yaml
 
 MinIO web console is now accessible at http://127.0.0.1:9001. Login with username ``minio`` and password ``minio123``.
 
@@ -74,9 +74,10 @@ Generate ``systemd`` files and enable on ``boot``:
 
 .. code-block:: bash
 
-    cd /etc/systemd/system/
-    sudo podman generate systemd --files --name minio-01-pod
-    sudo systemctl enable pod-minio-01-pod.service container-minio-01-pod-minio-01.service
+    mkdir -pv ~/.config/systemd/user
+    cd ~/.config/systemd/user
+    podman generate systemd --files --name minio-01-pod
+    systemctl --user enable pod-minio-01-pod.service container-minio-01-pod-minio-01.service
 
 .. note::
 
