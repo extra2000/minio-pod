@@ -15,6 +15,7 @@ build_script:
   - sudo podman build -t extra2000/minio .
   - cd ${APPVEYOR_BUILD_FOLDER}/deployment/examples/podman-general
   - cp -v configmaps/minio-01.yaml{.example,}
+  - cp -v minio-01-pod.yaml{.example,}
   - sudo podman play kube --configmap configmaps/minio-01.yaml --seccomp-profile-root ./seccomp minio-01-pod.yaml
   - cd ${APPVEYOR_BUILD_FOLDER}
 on_success:
