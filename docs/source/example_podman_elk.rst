@@ -146,4 +146,4 @@ Deploy ``minio-01``
 
     podman play kube --network elknet --configmap configmaps/minio-01.yaml --seccomp-profile-root ./seccomp elk-minio-01-pod.yaml
 
-MinIO web console is now accessible at http://127.0.0.1:9001. Login with username ``minio`` and password ``minio123``.
+MinIO web console is now accessible at https://127.0.0.1:9001. Login with username ``minio`` and password ``minio123``.
