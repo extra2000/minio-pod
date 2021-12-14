@@ -1,5 +1,30 @@
 # Changelog
 
+## [2.1.0](https://github.com/extra2000/minio-pod/compare/v2.0.0...v2.1.0) (2021-12-14)
+
+
+### Features
+
+* **pods:** add mountpoints for SSL certificate ([ebd2fae](https://github.com/extra2000/minio-pod/commit/ebd2fae30e8b52772c84fc4351387f3be0c99c7a))
+* **pods:** add SSL certs files ([6c3fa79](https://github.com/extra2000/minio-pod/commit/6c3fa793306d15308655d4d019944c015cefd8b0))
+
+
+### Documentations
+
+* **deployments:** add instructions to create SSL certs ([95d6c62](https://github.com/extra2000/minio-pod/commit/95d6c621506e9068f1a8cd22364f2b5e802e83bb))
+* **deployments:** change `http://127.0.0.1:9001` to `https://127.0.0.1:9001` ([b010cac](https://github.com/extra2000/minio-pod/commit/b010cac8f74d7e53885f18217b22f17bb8810569))
+
+
+### Code Refactoring
+
+* **podman-general:** using `hostNetwork` because HTTPS doesn't work with NAT ([d6710f7](https://github.com/extra2000/minio-pod/commit/d6710f775f9c61cc1e5482adee13a3c4ad56f0f3))
+* **secrets:** remove `.gitkeep` ([d651677](https://github.com/extra2000/minio-pod/commit/d6516778de852139214d363954d66f6a1ac2d41d))
+
+
+### Continuous Integrations
+
+* **AppVeyor:** remove `podman play kube` instructions ([a79dd53](https://github.com/extra2000/minio-pod/commit/a79dd53ac7e13744bf9b40a0dacba383be36a8bd))
+
 ## [2.0.0](https://github.com/extra2000/minio-pod/compare/v1.0.0...v2.0.0) (2021-12-14)
 
 
