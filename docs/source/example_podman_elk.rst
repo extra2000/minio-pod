@@ -49,6 +49,12 @@ Create config file:
 
     cp -v configmaps/minio-01.yaml{.example,}
 
+Create pod file:
+
+.. code-block:: bash
+
+    cp -v elk-minio-01-pod.yaml{.example,}
+
 Load SELinux Security Policy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
