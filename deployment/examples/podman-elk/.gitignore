@@ -1,5 +1,3 @@
-secrets/*
-!secrets/.gitkeep
 configmaps/*
 !configmaps/*.example
 
