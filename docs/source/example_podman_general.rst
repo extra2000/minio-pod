@@ -51,6 +51,87 @@ Create pod file:
 
     cp -v minio-01-pod.yaml{.example,}
 
+Create CA-signed SSL Certificate
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Create certificate configs:
+
+.. code-block:: bash
+
+    cp -v secrets/certs/configs/minio-ca-crt.conf{.example,}
+    cp -v secrets/certs/configs/minio-ca-policy.conf{.example,}
+    cp -v secrets/certs/configs/minio-01-csr.conf{.example,}
+
+.. note::
+
+    You may need to edit ``*conf`` files in ``secrets/certs/configs/``.
+
+``cd`` into ``secrets/certs/`` directory:
+
+.. code-block:: bash
+
+    cd secrets/certs/
+
+Create private key for the ``minio-01`` host:
+
+.. code-block:: bash
+
+    openssl genrsa -out output/minio-01.key 2048
+
+Create CSR for the ``minio-01`` host:
+
+.. code-block:: bash
+
+    openssl req -new -key output/minio-01.key -out output/minio-01.csr -config configs/minio-01-csr.conf
+
+Create private key for MinIO CA certificate:
+
+.. code-block:: bash
+
+    openssl genrsa -aes128 -out output/minio-ca.key 2048
+
+.. note::
+
+    You can use password ``abcde12345`` for testing purpose.
+
+Create MinIO CA certificate:
+
+.. code-block:: bash
+
+    openssl req -new -x509 -key output/minio-ca.key -out output/minio-ca.crt -config configs/minio-ca-crt.conf -days 1825
+
+Create ``index.txt`` and ``serial`` files required during signing certificates:
+
+.. code-block:: bash
+
+    touch index.txt
+    echo '01' > serial
+
+Sign ``minio-01`` certificate:
+
+.. code-block:: bash
+
+    openssl ca -config configs/minio-ca-policy.conf -out output/minio-01.crt -infiles output/minio-01.csr
+
+Verify certificates:
+
+.. code-block:: bash
+
+    openssl verify -CAfile output/minio-ca.crt output/minio-01.crt
+
+Upload required certificates to the ``minio-01`` host:
+
+.. code-block:: bash
+
+    scp -P 22 ./secrets/certs/output/minio-01.crt USER@MINIO-01-IP:extra2000/minio-pod/deployment/examples/podman-general/secrets/certs/output/
+    scp -P 22 ./secrets/certs/output/minio-01.key USER@MINIO-01-IP:extra2000/minio-pod/deployment/examples/podman-general/secrets/certs/output/
+
+On the ``minio-01`` host, make sure the certificates are mountable by Podman:
+
+.. code-block:: bash
+
+    chcon -R -v -t container_file_t secrets/certs/output/
+
 Load SELinux Security Policy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
