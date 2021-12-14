@@ -65,7 +65,19 @@ spec:
     volumeMounts:
     - mountPath: /data
       name: minio-01-data
+    - mountPath: /root/.minio/certs/public.crt
+      name: ssl-crt
+      readOnly: true
+    - mountPath: /root/.minio/certs/private.key
+      name: ssl-key
+      readOnly: true
   volumes:
   - name: minio-01-data
     persistentVolumeClaim:
       claimName: elk-minio-01-data
+  - name: ssl-crt
+    hostPath:
+      path: ./secrets/certs/output/minio-01.crt
+  - name: ssl-key
+    hostPath:
+      path: ./secrets/certs/output/minio-01.key
