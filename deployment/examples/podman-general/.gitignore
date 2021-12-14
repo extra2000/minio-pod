@@ -1,3 +1,10 @@
+secrets/certs/index.txt*
+secrets/certs/serial*
+secrets/certs/configs/*
+!secrets/certs/configs/*.conf.example
+secrets/certs/output/*
+!secrets/certs/output/.gitkeep
+
 configmaps/*
 !configmaps/*.example
 
