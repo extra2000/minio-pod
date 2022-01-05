@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/extra2000/minio-pod/compare/v2.1.0...v2.2.0) (2022-01-05)
+
+
+### Features
+
+* **dockerfile:** update MinIO from `RELEASE.2021-12-10T23-03-39Z.fips` to `RELEASE.2022-01-04T07-41-07Z.fips` ([f786e9e](https://github.com/extra2000/minio-pod/commit/f786e9eef5ceae3f299405a32217a19af896cc70))
+
 ## [2.1.0](https://github.com/extra2000/minio-pod/compare/v2.0.0...v2.1.0) (2021-12-14)
 
 
