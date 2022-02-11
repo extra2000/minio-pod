@@ -32,6 +32,15 @@ spec:
       limits:
         memory: 1000Mi
         cpu: 1000m
+    # ports:
+    # - containerPort: 9000
+    #   hostPort: 9000
+    #   hostIP: 127.0.0.1
+    #   protocol: tcp
+    # - containerPort: 9001
+    #   hostPort: 9001
+    #   hostIP: 127.0.0.1
+    #   protocol: tcp
     env:
     - name: MINIO_ROOT_USER
       valueFrom:
